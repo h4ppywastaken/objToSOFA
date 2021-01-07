@@ -26,7 +26,7 @@ Use ".\objToSOFA -?" or ".\objToSOFA -h" to see the help context.
 
 ## Main Contributors
 
-[h4ppy](https://github.com/h4ppywastaken)
+[h4ppywastaken](https://github.com/h4ppywastaken)
 
 ## Contributing
 
