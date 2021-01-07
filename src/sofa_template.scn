@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+
+<Node name="root" gravity="0 0 0" dt="0.04">
+    <VisualStyle displayFlags="showBehavior showVisual hideMapping showForceFields" />
+    <RequiredPlugin pluginName='SofaOpenglVisual'/>
+
+    <DefaultPipeline name="CollisionPipeline" verbose="0" />
+    <BruteForceDetection name="N2" />
+    <DefaultContactManager name="collision response" response="default" />
+    <DiscreteIntersection/>
+    <DefaultContactManager name="Response" response="FrictionContact" />
+
+    <Node name="Node_templateFilename" > 
+        
+        <!-- Numerical Solver -->
+        <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+        <CGLinearSolver name="linear solver" iterations="25" tolerance="1e-09" threshold="1e-09" />
+        
+        <!-- Behaviour Model -->
+        <MeshGmshLoader name="meshLoader" filename="templateFilename.msh" /> 
+        <TetrahedronSetTopologyContainer name="topo" src="@meshLoader" />
+        <MechanicalObject name="dofs" src="@meshLoader" />
+        <TetrahedronSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" />
+        <DiagonalMass  name="computed using mass density" massDensity="1" />
+        <TetrahedralCorotationalFEMForceField template="Vec3d" name="FEM" method="large" youngModulus="3000" poissonRatio="0.3" computeGlobalMatrix="0" />
+
+        <!-- Fixed Constraints -->
+        <FixedConstraint name="FixedConstraint" indices="0 1 2"/>
+
+        <!-- Constant Force Fields -->
+        <ConstantForceField name="CFF1" indices="3" forces="-200 -200 0" showArrowSize="0.01" />
+        <ConstantForceField name="CFF2" indices="4" forces="200 0 0" showArrowSize="0.01" />
+        
+        <!-- Collision Model -->
+        <Node name="Collision_templateFilename" activated="1"  gravity="0 0 0"> 
+            <MeshObjLoader name="loader" filename="templateFilename.obj" />
+            <MeshTopology src="@loader" />
+            <MechanicalObject name="" src="@loader" template="Vec3d" />
+            <TriangleCollisionModel  selfCollision="0" />
+            <LineCollisionModel    selfCollision="0" />
+            <PointCollisionModel  selfCollision="0" />
+            <BarycentricMapping input="@.." output="@." />
+        </Node>
+        
+        <!-- Visual Model -->
+        <Node name="VisualModel_templateFilename" tags="Visual"  gravity="0 0 0"> 
+            <MeshObjLoader name="visualloader" filename="templateFilename.obj" />
+            <OglModel src="@visualloader"/>
+            <BarycentricMapping name="visual mapping" input="@../dofs" output="@VisualModel_templateFilename" />
+        </Node> 
+
+    </Node> 
+</Node>
+
+
