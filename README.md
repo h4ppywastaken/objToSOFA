@@ -6,7 +6,6 @@ objToSOFA is a linux bash script. It Tetrahedralizes a .obj file triangle/quad m
 ## Prerequisites
 The script automatically checks if prerequisites are installed if you use ".\objToSOFA.sh -h".
 
- - gcc/make (for building from source with [Makefile](Makefile))
  - [objNodeGridGenerator](https://github.com/h4ppywastaken/objNodeGridGenerator)
  - [TetGen](http://www.wias-berlin.de/software/index.jsp?id=TetGen)
  - [GMSH](http://gmsh.info/)
