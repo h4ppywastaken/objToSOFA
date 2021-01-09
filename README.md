@@ -14,7 +14,7 @@ The script automatically checks if prerequisites are installed if you use ".\obj
 
 ## Usage
 
-Execute in console from within solarsystem folder with command ".\objToSOFA.sh [parameters]".
+Execute in console from within objToSOFA folder with command ".\objToSOFA.sh [parameters]".
 
 ## Parameters
 
