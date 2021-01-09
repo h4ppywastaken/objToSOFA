@@ -13,11 +13,6 @@ The script automatically checks if prerequisites are installed if you use ".\obj
  - [Blender](https://www.blender.org/)
  - [Python](https://www.python.org/)
 
-
-## Build
-
-Use "make" with [Makefile](Makefile) or use gcc (see [Makefile](Makefile) for gcc commands).
-
 ## Usage
 
 Execute in console from within solarsystem folder with command ".\objToSOFA.sh [parameters]".
